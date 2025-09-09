@@ -6,8 +6,8 @@ class AbrigoAnimais {
 
   encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {
     
-    const resultadoAdocao = {};
     const abrigo = Abrigo.carregarDadosAnimais();
+    const brinquedosAbrigo = abrigo.recuperaBrinquedosAnimal();
     let p1Brinq,  p2Brinq, animais;
 
     try{
@@ -15,8 +15,6 @@ class AbrigoAnimais {
       p1Brinq = utils.normalizaBrinquedos(brinquedosPessoa1);
       p2Brinq = utils.normalizaBrinquedos(brinquedosPessoa2);
       animais = utils.formataNome(ordemAnimais);
-   
-      
 
       //Verifica se nome dos animais solicitados consta na lista de animais do abrigo
       for(const animal of animais){
@@ -27,8 +25,12 @@ class AbrigoAnimais {
       }
 
        // Verifica duplicidade de brinquedos ou brinquedos inválidos
+      const validBrinq1 = utils.validaBrinquedos(p1Brinq, brinquedosAbrigo);
+      if(validBrinq1.erro) return validBrinq1;
 
-       //IMPLEMENTAR
+      const validBrinq2 = utils.validaBrinquedos(p2Brinq, brinquedosAbrigo);
+      if(validBrinq2.erro) return validBrinq2;
+     
 
       //Cadastra os adotantes no abrigo
       abrigo.cadastraAdotante(new Adotante(1, p1Brinq));

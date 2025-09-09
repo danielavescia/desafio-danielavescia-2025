@@ -1,7 +1,7 @@
 import {Cachorro} from './cachorro.js'
 import {Gato} from './gato.js'
 import {Tartaruga} from './tartaruga.js'
-import { Adotante } from './adotante.js';
+
 
 export class Abrigo{
 
@@ -56,13 +56,18 @@ export class Abrigo{
             const animal = this.recuperaNomeAnimal(nomeAnimal);
            
             
-           
             if(animal.adotado !== null) continue;
 
             //checagem da subsequencia dos brinquedos contra brinquedos dos candidatos - true or false
             const ad1 = adotante1.podeAdotar() && animal.verificaAdocao(adotante1.brinquedos)
             const ad2 = adotante2.podeAdotar() && animal.verificaAdocao(adotante2.brinquedos)
-            console.log("ad1:", ad1, "ad2:", ad2);
+
+
+            //CHECAGEM DO GATO
+            //IMPLEMENTAR
+
+
+           
             //os dois candidatos retornaram true na checagem, então animal não é adotado/continua no abrigo 
             if(ad1 && ad2){
                 resultado[animal.nome] = 'abrigo';
