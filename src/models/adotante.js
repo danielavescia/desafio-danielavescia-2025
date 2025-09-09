@@ -1,7 +1,7 @@
 export class Adotante{
     constructor(id, brinquedos =[]){
         this.id =id;
-        this.brinquedos = brinquedos;
+        this.brinquedos = brinquedos || [];
         this.animaisAdotados =[];
     }
 
@@ -10,14 +10,14 @@ export class Adotante{
     adotar(animal){
         if(!this.podeAdotar()) return false;
         
-        this.animaisAdotados.push(animal.nome);
+        this.animaisAdotados.push(animal);
         return true;
 
     }
 
     //Verifica se adotante adotou limite de animais - retorna true ou false
     podeAdotar(){
-        return this.animaisAdotados.length < 3;
+        return this.animaisAdotados.length <3;
     }
 
     //Caso especial tartargua - Verifica se possui companhia

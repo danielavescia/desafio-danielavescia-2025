@@ -43,5 +43,41 @@ test('Deve encontrar brinquedos duplicados na entrada', () => {
     expect(resultado.lista).toBeFalsy();
   });
 
+  test('Deve encontrar pessoa para Loco', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('CAIXA, SKATE, RATO, NOVELO',  'RATO,BOLA', 'Bola, Loco, Zero');
+      expect(resultado.lista[0]).toBe('Bola - pessoa 1');
+      expect(resultado.lista[1]).toBe('Loco - pessoa 1');
+      expect(resultado.lista[2]).toBe('Zero - pessoa 2');
+      expect(resultado.lista.length).toBe(3);
+      expect(resultado.erro).toBeFalsy();
+  });
+
+  test('Não deve encontrar pessoa para Loco (sem companhia)', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('SKATE, RATO',  'CAIXA, RATO, BOLA,NOVELO', 'Loco, Bola, Zero');
+      expect(resultado.lista[0]).toBe('Bola - pessoa 2');
+      expect(resultado.lista[1]).toBe('Loco - abrigo');
+      expect(resultado.lista[2]).toBe('Zero - pessoa 2');
+      expect(resultado.lista.length).toBe(3);
+      expect(resultado.erro).toBeFalsy();
+  });
+
+  test('Não deve encontrar pessoa para Fofo, pois não divide brinquedos', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('BOLA, RATO, LASER',  'CAIXA, NOVELO', 'Mimi, Fofo');
+      expect(resultado.lista[0]).toBe('Fofo - abrigo');
+      expect(resultado.lista[1]).toBe('Mimi - pessoa 1');
+      expect(resultado.lista.length).toBe(2);
+      expect(resultado.erro).toBeFalsy();
+  });
+
+    test('Adotante1 não deve ter mais de 3 animais', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('LASER, RATO, BOLA, SKATE, CAIXA, NOVELO',  'SKATE', 'Bebe, Rex, Loco, Bola');
+      expect(resultado.lista[0]).toBe('Bebe - pessoa 1'); 
+      expect(resultado.lista[1]).toBe('Bola - abrigo'); 
+      expect(resultado.lista[2]).toBe('Loco - pessoa 1');  
+      expect(resultado.lista[3]).toBe('Rex - pessoa 1');  
+      expect(resultado.lista.length).toBe(4);
+      expect(resultado.erro).toBeFalsy();
+  });
+
 });
 

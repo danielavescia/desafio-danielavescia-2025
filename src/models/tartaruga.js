@@ -9,9 +9,6 @@ export class Tartaruga extends Animal{
 
     verificaAdocao(adotante){
         if(!adotante.possuiAnimal()) return false;
-        return this.brinquedosFavoritos.every(b => adotante.brinquedosAdotante.includes(b));
+        return this.brinquedosFavoritos.every(b => adotante.brinquedos.includes(b));
     }
-
-   
-
 }

@@ -12,9 +12,8 @@ export class Animal{
     }
 
     //método para verificar se há match com brinquedos favoritos retorna true or false
-    verificaAdocao(brinquedosAdotante){
-       
-        return contemSubsequenciaBrinquedos(this.brinquedosFavoritos, brinquedosAdotante)
+    verificaAdocao(adotante){
+        return contemSubsequenciaBrinquedos(this.brinquedosFavoritos, adotante.brinquedos)
     
     }
 

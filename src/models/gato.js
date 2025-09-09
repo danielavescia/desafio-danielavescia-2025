@@ -1,6 +1,5 @@
 import { Animal } from "./animal";
 
-//gatos não dividem brinquedos
 export class Gato extends Animal{
     
     constructor(nome, brinquedosFavoritos){
@@ -8,5 +7,22 @@ export class Gato extends Animal{
     }
 
     //requisito de gato: não divide brinquedos
+    verificaAdocao(adotante){
 
+      if(!super.verificaAdocao(adotante)){
+        return false;
+      }
+
+        for (const animal of adotante.animaisAdotados){
+
+            if(animal.especie === 'gato'){
+                if(animal.brinquedosFavoritos.some(b => this.brinquedosFavoritos.includes(b))){
+                    return false;
+                }
+            }
+        }
+
+       return true;
+
+    }
 }

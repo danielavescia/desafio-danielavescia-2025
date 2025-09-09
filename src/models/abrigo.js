@@ -59,29 +59,25 @@ export class Abrigo{
             if(animal.adotado !== null) continue;
 
             //checagem da subsequencia dos brinquedos contra brinquedos dos candidatos - true or false
-            const ad1 = adotante1.podeAdotar() && animal.verificaAdocao(adotante1.brinquedos)
-            const ad2 = adotante2.podeAdotar() && animal.verificaAdocao(adotante2.brinquedos)
-
-
-            //CHECAGEM DO GATO
-            //IMPLEMENTAR
-
-
+            const ad1 = adotante1.podeAdotar() && animal.verificaAdocao(adotante1)
+            const ad2 = adotante2.podeAdotar() && animal.verificaAdocao(adotante2)
            
+            
             //os dois candidatos retornaram true na checagem, então animal não é adotado/continua no abrigo 
             if(ad1 && ad2){
                 resultado[animal.nome] = 'abrigo';
-            }
-
-            if(ad1 && !ad2){
+                
+            }else if(ad1 && !ad2){
                 //candidato 1 pode adotar e candidato 2 não
                 this.finalizaAdocao(animal, adotante1);
                 resultado[animal.nome] = 'pessoa 1';
+                
            
             } else if(ad2 && !ad1){
                  //candidato 2 pode adotar e candidato 1 não
                 this.finalizaAdocao(animal, adotante2);
                 resultado[animal.nome] = 'pessoa 2';
+                
             
             
             }else{

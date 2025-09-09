@@ -35,7 +35,7 @@ export function normalizaBrinquedos(inputBrinquedos){
     return b;
 }
 
-//brinquedo invalido ='' ou duplicado
+//brinquedo invalido ou duplicado
 export function validaBrinquedos(brinquedosAdotante, brinquedosAbrigo){
     const verificados = []
     for(const b of brinquedosAdotante){
